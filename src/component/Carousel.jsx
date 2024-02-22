@@ -2,14 +2,22 @@ import React from 'react'
 import LoginCard from './LoginCard'
 import FeatureDetails from './FeatureDetails'
 
-
 function Carousel() {
   return (
     <>
-    <div className=' flex flex-col items-center justify-center' style={{background: 'linear-gradient(to right, ##8895A8ff, #F6F9FBff, #E3E9EFff, #07466Dff, #F7FAFCff)'}}>
-      <div className="Support" style={{marginBottom: '50px', marginTop: '20px'}}>Support</div> {/* Assuming you want some margin between Support and LoginCard */}
+    <div className=' flex flex-col items-center  h-screen' style={{background: `linear-gradient(to right, 
+        var(--indigo-dye),
+        var(--alice-blue)`
+        }}>
+
+        <button className="supportbtn" style={{display:'flex', alignItems:'center',marginBottom: '50px', marginTop: '40px', color:'white'}}>
+          <img src="src\icons\Support_icon.png" style={{height: '20px', marginRight:'5px'}}/>Support
+        </button>   
+
       <LoginCard />
+      
       <FeatureDetails />
+    
     </div>
     </>
   );
