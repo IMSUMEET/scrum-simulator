@@ -11,7 +11,7 @@ function LoginCard() {
     useEffect(() => {
         const interval = setInterval(() => {
           setIndex((prevIndex) => (prevIndex + 1) % features.length);
-        }, 3000);
+        }, 3500);
     
         return () => clearInterval(interval);
     }, [features.length]);
@@ -35,7 +35,7 @@ function LoginCard() {
             </div>
         </div>
         <div className="absolute bg-white rounded-lg ml-48 " style={{display: 'flex' , height: '80px', width: '250px', marginTop: '-50px', alignItems: 'center', justifyContent: 'center', color:'#104B70',  boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, 0.5)'}}>
-            {features[index].highlight}
+            <p style={{opacity: index === 0 ? 1 : 0, transition: 'opacity 0.5s ease-in-out'}}>{features[index].highlight}</p>
         </div>
     </div>
         
