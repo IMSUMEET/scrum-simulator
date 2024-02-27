@@ -1,24 +1,45 @@
-import React from 'react'
+import React from 'react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 
 const SignInForm = () => {
+
+  // to handle the visibility of password field
+  const [showPassword, setShowPassword] = useState(false);
+  const handlePasswordVisibility = () => {
+    setShowPassword(showPassword => !showPassword);
+  }
+
+  const [email, setemail] = useState("")
+  const handleEmailChange = (e) => {
+    setemail(e.target.value)
+  }
+
+
+
   return (
-    <form className='flex flex-col gap-4 mx-20'>
+    <form className='flex flex-col gap-4 mx-20 px-10'>
       <h1 className='font-bold' style={{ fontSize: "2rem" }}>Sign in</h1>
       <p>
         <span className="opacity-50">Don't have an account? </span>
-        <span className="opacity-80 underline underline-offset-4 cursor-pointer">Create now</span>
+        <Link to="/sign-up" className="opacity-80 underline underline-offset-4 cursor-pointer">Create now</Link>
       </p>
       <div className='pt-3'>
         <h3 className='opacity-55 py-2'>E-mail</h3>
-        <input type="email" placeholder='example@gmail.com' className='px-3 py-3 mt-1 opacity-55 w-full border border-[#8895A8ff] rounded-[12px] outline-none' />
+        <input type="email" value={email} onChange={(e) => handleEmailChange(e)} placeholder='example@gmail.com' className='px-3 py-3 mt-1 opacity-55 w-full border border-[#8895A8ff] rounded-[12px] outline-none' />
       </div>
 
       <div className='pt-3'>
         <h3 className='opacity-55 pb-2'>Password</h3>
         <div className='flex border items-center border-[#8895A880] rounded-[12px]'>
-          <input type="password" placeholder='@#*%' className='px-3 pt-2 pb-3 mt-1 opacity-55 w-full border-none outline-none rounded-[12px]' />
-          <button>
-            <img src="/assets/icons/eye-icon.png" alt="eye-icon" className='pr-2 pl-4 py-1 mr-4 border-l border-l-[#8895A880]'/>
+          <input type={showPassword ? "text" : "password"} placeholder='@#*%' className='px-3 pt-2 pb-3 mt-1 opacity-55 w-full border-none outline-none rounded-[12px]' />
+          <button type='button' onClick={handlePasswordVisibility}>
+            {showPassword ? (
+              <img src="/assets/icons/eye-icon.png" alt="eye-icon" height={30} width={50} className='pr-2 pl-4 py-1 mr-4 border-l border-l-[#8895A880]'/>
+              ) : (
+              <img src="/assets/icons/hide-eye-icon.png" alt="hide-eye-icon" height={30} width={50} className='pr-2 pl-4 py-1 mr-4 border-l border-l-[#8895A880]'/>
+            )}
           </button>
         </div>
       </div>

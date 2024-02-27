@@ -100,4 +100,9 @@
     color: #8895A8ff;
     font-weight: 500;
   }
+
+  .my-custom-width-transition {
+    width: 100% ease;
+    transition-delay: 2000ms; /* Adjust the delay value as needed */
+  }
 }

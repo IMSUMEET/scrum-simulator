@@ -10,7 +10,7 @@ import { Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <main className='flex h-screen'>
+    <main className='flex h-screen w-screen overflow-hidden'>
       <Routes>
         {/* Public Route if not authenticated send them to one of the outlet routes */}
         <Route element={<AuthLayout />}>
