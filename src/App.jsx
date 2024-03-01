@@ -1,3 +1,4 @@
+import Carousel from './component/Carousel';
 import AuthLayout from './_auth/AuthLayout';
 import SignInForm from './_auth/forms/SignInForm';
 import SignUpForm from './_auth/forms/SignUpForm';
