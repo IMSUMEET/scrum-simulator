@@ -18,11 +18,11 @@ function LoginCard() {
 
   return (
     <>
-    <div className=' relative'>
+    <div className='relative'>
         <div className=" flex flex-row  bg-white p-4 rounded-lg shadow-md border border-gray-300" style={{ width: '400px', height: '250px' }}>
         {/* Displays features */}
             <div className=" relative flex-wrap">
-                <p className=" mt-4 text-left  font-bold text-2xl" style={{color: '#104B70'}}>{features[index].title}</p>
+                <p className=" mt-4 text-left font-bold text-2xl" style={{color: '#104B70'}}>{features[index].title}</p>
                 {/* feature description */}
                 <p className = " m-3 text-left text-black">{features[index].description}</p>
                 {/* learn more button */}

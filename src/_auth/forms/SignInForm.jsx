@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 
-const SignInForm = () => {
+const SignInForm = ({runCardAnimation}) => {
 
   // to handle the visibility of password field
   const [showPassword, setShowPassword] = useState(false);
@@ -23,7 +23,7 @@ const SignInForm = () => {
       <h1 className='font-bold' style={{ fontSize: "2rem" }}>Sign in</h1>
       <p>
         <span className="opacity-50">Don't have an account? </span>
-        <Link to="/sign-up" className="opacity-80 underline underline-offset-4 cursor-pointer">Create now</Link>
+        <span className="opacity-80 underline underline-offset-4 cursor-pointer" onClick={runCardAnimation}>Create now</span>
       </p>
       <div className='pt-3'>
         <h3 className='opacity-55 py-2'>E-mail</h3>
