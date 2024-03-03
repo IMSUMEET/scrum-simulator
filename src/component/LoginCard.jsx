@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 
 function LoginCard() {
     const [index, setIndex] = useState(0);
@@ -11,7 +12,7 @@ function LoginCard() {
     useEffect(() => {
         const interval = setInterval(() => {
           setIndex((prevIndex) => (prevIndex + 1) % features.length);
-        }, 3500);
+        }, 3000);
     
         return () => clearInterval(interval);
     }, [features.length]);
@@ -22,7 +23,14 @@ function LoginCard() {
         <div className=" flex flex-row  bg-white p-4 rounded-lg shadow-md border border-gray-300" style={{ width: '400px', height: '250px' }}>
         {/* Displays features */}
             <div className=" relative flex-wrap">
-                <p className=" mt-4 text-left font-bold text-2xl" style={{color: '#104B70'}}>{features[index].title}</p>
+            <motion.p className=" mt-4 text-left font-bold text-2xl" style={{color: '#104B70'}}
+                initial={{ opacity: 0 }} // Initial animation state
+                animate={{ opacity: 1 }} // Animation when component mounts
+                transition={{ type: 'spring', duration: 1 }} // Animation transition settings
+            >
+                {features[index].title}
+            </motion.p>
+                {/* <p className=" mt-4 text-left font-bold text-2xl" style={{color: '#104B70'}}></p> */}
                 {/* feature description */}
                 <p className = " m-3 text-left text-black">{features[index].description}</p>
                 {/* learn more button */}
@@ -35,7 +43,7 @@ function LoginCard() {
             </div>
         </div>
         <div className="absolute bg-white rounded-lg ml-48 " style={{display: 'flex' , height: '80px', width: '250px', marginTop: '-50px', alignItems: 'center', justifyContent: 'center', color:'#104B70',  boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, 0.5)'}}>
-            <p style={{opacity: index === 0 ? 1 : 0, transition: 'opacity 0.5s ease-in-out'}}>{features[index].highlight}</p>
+            <p style={{ transition: 'opacity 0.5s ease-in-out'}}>{features[index].highlight}</p>
         </div>
     </div>
         
@@ -44,3 +52,5 @@ function LoginCard() {
 }
 
 export default LoginCard
+
+

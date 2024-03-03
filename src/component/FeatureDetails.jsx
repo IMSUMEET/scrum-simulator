@@ -7,20 +7,21 @@ function FeatureDetails() {
         { title: "Another new feature", text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam exercitationem blanditiis quas." },
         // We can add more features here as needed
     ];
+    
 
     useEffect(() => {
         const interval = setInterval(() => {
           setIndex((prevIndex) => (prevIndex + 1) % features.length);
-        }, 3500);
+        }, 3000);
     
         return () => clearInterval(interval);
     }, [features.length]);
 
   return (
     <>
-        <div className='featurebox' style={{ display: 'flex', width: '400px',marginTop: '70px', flexDirection:'column', justifyContent:'center' }}>
-            <h2 className='newfeature' style={{fontWeight: '650', fontSize:'30px', color: 'white', transition: 'opacity 0.5s ease-in-out', opacity: index === 0 ? 1 : 0}}>{features[index].title}</h2>
-            <div className='featuretext' style={{color:'white', transition: 'opacity 0.5s ease-in-out', opacity: index === 0 ? 1 : 0}}>{features[index].text}</div>
+        <div className='featurebox' style={{ display: 'flex', width: '400px', height: '150px', overflow: 'hidden', marginTop: '70px', flexDirection:'column', justifyContent:'center' }}>
+            <h2 className='newfeature' style={{fontWeight: '650', fontSize:'30px', color: 'white', transition: 'opacity 0.5s ease-in-out'}}>{features[index].title}</h2>
+            <div className='featuretext' style={{color:'white', transition: 'opacity 0.5s ease-in-out'}}>{features[index].text}</div>
         </div>
     </>
     

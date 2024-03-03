@@ -19,7 +19,7 @@ const SignInForm = ({runCardAnimation}) => {
 
 
   return (
-    <form className='flex flex-col gap-4 mx-20 px-10'>
+    <form className='flex flex-col gap-4 mx-20 px-10 h-full justify-evenly'>
       <h1 className='font-bold' style={{ fontSize: "2rem" }}>Sign in</h1>
       <p>
         <span className="opacity-50">Don't have an account? </span>

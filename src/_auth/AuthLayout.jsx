@@ -31,7 +31,7 @@ const AuthLayout = () => {
       ) :
         <div className='w-full h-full relative'>
           <section className='flex w-full h-full justify-end'>
-            <motion.div className={`flex flex-col min-w-[760px] z-10 max-h-screen overflow-scroll absolute top-0 left-0`} animate={{ x: clickedSignUp ? "-100%" : '0' }} transition={{ type: "tween", duration: 0.5 }}>
+            <motion.div className={`flex flex-col min-w-[50%] z-10 max-h-screen overflow-scroll absolute top-0 left-0`} animate={{ x: clickedSignUp ? "-100%" : '0' }} transition={{ type: "tween", duration: 0.5 }}>
               {/* name and logo */}
               <div className='flex justify-start items-center gap-2 mt-4 mb-8 ml-9'>
                 <img src="/assets/icons/Logo.svg" alt="logo" height={70} width={60} />
@@ -41,7 +41,7 @@ const AuthLayout = () => {
             </motion.div>
 
             <motion.div style={{background: `linear-gradient(to right, var(--indigo-dye), var(--alice-blue)`}} 
-            animate={imageSetting} transition={{ type: "tween", duration: 0.5 }}>
+            animate={imageSetting} transition={{ type: "tween", duration: 0.5 }} className='overflow-hidden'>
               <Carousel />
             </motion.div>
 
