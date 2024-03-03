@@ -1,9 +1,15 @@
 import React from 'react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../services/firebase';
+
+import { useNavigate } from 'react-router-dom';
 
 
 const SignUpForm = ({runCardAnimation}) => {
+
+
+  const navigate = useNavigate();
 
   // to handle the visibility of password field
   const [showPassword, setShowPassword] = useState(false);
@@ -109,6 +115,19 @@ const SignUpForm = ({runCardAnimation}) => {
     setConfirmPassword('');
   }
 
+  const handleSignup = () => {
+    createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
+      const user = userCredential.user;
+      console.log(user);
+      navigate("/dashboard");
+    }).catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorCode, errorMessage);
+    })
+
+  }
+
   return (
     <form className='flex flex-col gap-1 mx-20 w-[500] h-[500] py-5 text-sm' onSubmit={handleSubmit}>
       <h1 className='font-bold text-center' style={{ fontSize: "2rem" }}>Sign up</h1>
@@ -159,19 +178,19 @@ const SignUpForm = ({runCardAnimation}) => {
         <p className={`text-red-600 pt-1 px-2 ${isInvalidFormValues.confirmPassword ? "" : "hidden"}`}>Passwords don't match!</p>
       </div>
 
-      <button className='rounded-[1.1rem] px-3 py-3 mt-5 w-full bg-[#07466Dff] text-white font-semibold' style={{ fontSize: "1.1.25rem" }} onClick={isFormFilled ? runCardAnimation : "" }>Sign up</button>
+      <button className='rounded-[1.1rem] px-3 py-3 mt-5 w-full bg-[#07466Dff] text-white font-semibold' style={{ fontSize: "1.1.25rem" }} onClick={isFormFilled ? handleSignup : runCardAnimation } type='button'>Sign up</button>
       <div className="divider">
         <span className="divider-text">OR</span>
       </div>
 
-      <button className="border border-[#8895A880] rounded-full px-2 py-2 my-4">
+      <button className="border border-[#8895A880] rounded-full px-2 py-2 my-4" type='button'>
         <div className='flex'>
           <img src="/assets/icons/google-icon.svg" alt="google-icon" height={30} width={30} className='m-1' />
           <span className='mx-4 w-full self-center opacity-50 font-medium'>Continue with Google</span>
         </div>
       </button>
 
-      <button className="border border-[#8895A880] rounded-full px-2 py-2">
+      <button className="border border-[#8895A880] rounded-full px-2 py-2" type='button'>
         <div className='flex'>
           <img src="/assets/icons/facebook-icon.svg" alt="google-icon" height={30} width={30} className='m-1'/>
           <span className='mx-4 w-full self-center opacity-50 font-medium'>Continue with Google</span>
