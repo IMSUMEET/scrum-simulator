@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
-import RootLayout from '../_root/RootLayout';
+import { Navigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import SignInForm from './forms/SignInForm';
 import Carousel from '../component/Carousel';
@@ -19,7 +18,9 @@ const AuthLayout = () => {
   }
 
 
-  const imageSetting = clickedSignUp ? { width: "100%", height: "unset", x: "0%", filter: "blur(5px)", "pointer-events": "none"} : { height: "100%", width: "60%", x: "15%", filter: "blur(0)"};
+  const initialImageSetting =  { height: "100%", width: "60%", x: "15%", filter: "blur(0)"};
+
+  const imageSetting = clickedSignUp ? { width: "100%", height: "unset", x: "0%", filter: "blur(5px)", "pointer-events": "none"} : initialImageSetting;
 
   const cardSetting = clickedSignUp ? {scale: 1, opacity: 1} : {scale: 0.1, opacity: 0};
 
@@ -31,7 +32,7 @@ const AuthLayout = () => {
       ) : (
         <div className='w-full h-full relative'>
           <section className='flex w-full h-full justify-end'>
-            <motion.div className={`flex flex-col min-w-[50%] z-10 h-screen overflow-scroll absolute top-0 left-0`} animate={{ x: clickedSignUp ? "-100%" : '0' }} transition={{ type: "tween", duration: 0.5 }}>
+            <motion.div className={`flex flex-col min-w-[50%] z-10 h-screen overflow-hidden absolute top-0 left-0`} animate={{ x: clickedSignUp ? "-100%" : '0' }} transition={{ type: "tween", duration: 0.5 }}>
               {/* name and logo */}
               <div className='flex justify-start items-center gap-2 mt-4 mb-4 ml-9'>
                 <img src="/assets/icons/Logo.svg" alt="logo" height={70} width={60} />
@@ -40,13 +41,13 @@ const AuthLayout = () => {
               <SignInForm runCardAnimation={toggleClickedSignUp}/>
             </motion.div>
 
-            <motion.div style={{background: `linear-gradient(to right, var(--indigo-dye), var(--alice-blue)`}} 
-            animate={imageSetting} transition={{ type: "tween", duration: 0.5 }}>
+            <motion.div style={{background: `linear-gradient(to right, var(--indigo-dye), var(--alice-blue)`, ...initialImageSetting}} 
+            animate={imageSetting} transition={{ type: "tween", duration: 0.5 }} className='w-50%'>
               <Carousel />
             </motion.div>
 
-            <motion.div style={{position: 'absolute', bottom: "50px", left: "28%", width: "600px", height: "90%", background: "white", borderRadius: "5%"}} className='custom-scrollbar z-20 opacity-0'
-            animate={cardSetting} transition={{ type: "tween", duration: 0.5}}>
+            <motion.div style={{position: 'absolute', bottom: "50px", left: "50%", width: "600px", height: "90%", background: "white", borderRadius: "5%", translateX: "-50%"}} className={`custom-scrollbar z-20 opacity-0 ${clickedSignUp ? "pointer-events-auto" : "pointer-events-none"}`}
+            animate={cardSetting} transition={{ type: "tween", duration: 0.5}} >
               <SignUpForm runCardAnimation={toggleClickedSignUp} />
             </motion.div>
 

@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../services/firebase';
 
 import { useNavigate } from 'react-router-dom';
+import { UserAuth } from '../../context/AuthContext';
 
 
 const SignUpForm = ({runCardAnimation}) => {
@@ -105,22 +106,20 @@ const SignUpForm = ({runCardAnimation}) => {
       setIsFormFilled(true);
     }
   }
-  
-  const handleSubmit = (e) => {
-    e.preventDefault();
 
-    setUsername('');
-    setEmail('');
-    setPassword('');
-    setConfirmPassword('');
-  }
-
-  const handleSignup = () => {
+  const handleSignup = (e) => {
     createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
       const user = userCredential.user;
       console.log(user);
-      navigate("/dashboard");
+      setUsername('');
+      setEmail('');
+      setPassword('');
+      setConfirmPassword('');
+      navigate("/sign-in");
+      runCardAnimation();
     }).catch((error) => {
+      // toast here
+      alert("invalid Credentials");
       const errorCode = error.code;
       const errorMessage = error.message;
       console.log(errorCode, errorMessage);
@@ -128,8 +127,12 @@ const SignUpForm = ({runCardAnimation}) => {
 
   }
 
+  const handleEmptySignup = (e) => {
+    console.log("empyt values cant create an account");
+  }
+
   return (
-    <form className='flex flex-col gap-1 mx-20 w-[500] h-[500] py-5 text-sm' onSubmit={handleSubmit}>
+    <form className='flex flex-col gap-1 mx-20 w-[500] h-[500] py-5 text-sm'>
       <h1 className='font-bold text-center' style={{ fontSize: "2rem" }}>Sign up</h1>
       <p className='text-center mt-3'>
         <span className="opacity-50">Already have an account? </span>
@@ -178,26 +181,24 @@ const SignUpForm = ({runCardAnimation}) => {
         <p className={`text-red-600 pt-1 px-2 ${isInvalidFormValues.confirmPassword ? "" : "hidden"}`}>Passwords don't match!</p>
       </div>
 
-      <button className='rounded-[1.1rem] px-3 py-3 mt-5 w-full bg-[#07466Dff] text-white font-semibold' style={{ fontSize: "1.1.25rem" }} onClick={isFormFilled ? handleSignup : runCardAnimation } type='button'>Sign up</button>
+      <button className='rounded-[1.1rem] px-3 py-3 mt-5 w-full bg-[#07466Dff] text-white font-semibold' style={{ fontSize: "1.1.25rem" }} onClick={isFormFilled ? handleSignup : () => {alert("Please fill the form before submitting")} } type='button'>Sign up</button>
       <div className="divider">
         <span className="divider-text">OR</span>
       </div>
 
       <button className="border border-[#8895A880] rounded-full px-2 py-2 my-4" type='button'>
         <div className='flex'>
-          <img src="/assets/icons/google-icon.svg" alt="google-icon" height={30} width={30} className='m-1' />
+          <img src="/assets/icons/google-icon.svg" alt="google-icon" height={20} width={20} className='m-1' />
           <span className='mx-4 w-full self-center opacity-50 font-medium'>Continue with Google</span>
         </div>
       </button>
 
       <button className="border border-[#8895A880] rounded-full px-2 py-2" type='button'>
         <div className='flex'>
-          <img src="/assets/icons/facebook-icon.svg" alt="google-icon" height={30} width={30} className='m-1'/>
-          <span className='mx-4 w-full self-center opacity-50 font-medium'>Continue with Google</span>
+          <img src="/assets/icons/facebook-icon.svg" alt="google-icon" height={22} width={22} className='m-1'/>
+          <span className='mx-4 w-full self-center opacity-50 font-medium'>Continue with Facebook</span>
         </div>
       </button>
-
-      
     </form>
   )
 }
