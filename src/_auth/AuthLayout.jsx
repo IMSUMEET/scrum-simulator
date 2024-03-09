@@ -36,8 +36,6 @@ const AuthLayout = () => {
 
             <motion.div className={`flex flex-col min-w-[50%] z-10 max-h-screen overflow-scroll absolute top-0 left-0`} animate={{ x: clickedSignUp ? "-100%" : '0' }} transition={{ type: "tween", duration: 0.5 }}>
 
-//             <motion.div className={`flex flex-col min-w-[50%] z-10 h-screen overflow-hidden absolute top-0 left-0`} animate={{ x: clickedSignUp ? "-100%" : '0' }} transition={{ type: "tween", duration: 0.5 }}>
-
               {/* name and logo */}
               <div className='flex justify-start items-center gap-2 mt-4 mb-4 ml-9'>
                 <img src="/assets/icons/Logo.svg" alt="logo" height={70} width={60} />
@@ -46,17 +44,13 @@ const AuthLayout = () => {
               <SignInForm runCardAnimation={toggleClickedSignUp}/>
             </motion.div>
 
-
-            <motion.div style={{background: `linear-gradient(to right, var(--indigo-dye), var(--alice-blue)`}} 
-            animate={imageSetting} transition={{ type: "tween", duration: 0.5 }} className='overflow-hidden'>
-
-//             <motion.div style={{background: `linear-gradient(to right, var(--indigo-dye), var(--alice-blue)`, ...initialImageSetting}} 
-//             animate={imageSetting} transition={{ type: "tween", duration: 0.5 }} className='w-50%'>
+             <motion.div style={{background: `linear-gradient(to right, var(--indigo-dye), var(--alice-blue)`, ...initialImageSetting}} 
+             animate={imageSetting} transition={{ type: "tween", duration: 0.5 }} className='w-50%'>
 
               <Carousel />
             </motion.div>
 
-            <motion.div style={{position: 'absolute', bottom: "50px", left: "50%", width: "600px", height: "90%", background: "white", borderRadius: "5%", translateX: "-50%"}} className={`custom-scrollbar z-20 opacity-0 ${clickedSignUp ? "pointer-events-auto" : "pointer-events-none"}`}
+            <motion.div style={{position: 'absolute', bottom: "50px", left: "50%", width: "500px", height: "90%", background: "white", borderRadius: "2%", translateX: "-50%"}} className={`custom-scrollbar z-20 opacity-0 ${clickedSignUp ? "pointer-events-auto" : "pointer-events-none"}`}
             animate={cardSetting} transition={{ type: "tween", duration: 0.5}} >
               <SignUpForm runCardAnimation={toggleClickedSignUp} />
             </motion.div>

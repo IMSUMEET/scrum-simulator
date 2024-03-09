@@ -159,11 +159,11 @@ const SignUpForm = ({runCardAnimation}) => {
   }
 
   return (
-    <form className='flex flex-col gap-1 mx-20 w-[500] h-[500] py-5 text-sm'>
+    <form className='flex flex-col gap-1 mx-10 w-[400] h-[500] py-5 text-sm'>
       <h1 className='font-bold text-center' style={{ fontSize: "2rem" }}>Sign up</h1>
       <p className='text-center mt-3'>
         <span className="opacity-50">Already have an account? </span>
-        <span className="opacity-80 underline underline-offset-4 cursor-pointer" onClick={handleLogicClick}>Login</span>
+        <span className="opacity-80 underline underline-offset-4 cursor-pointer text-[#07466Dff]" onClick={handleLogicClick}>Login</span>
       </p>
 
       <div className='pt-2'>

@@ -40,16 +40,20 @@ const SignInForm = ({runCardAnimation}) => {
 
   const handleSignIn = () => {
     setIsLoading(true);
-    if(!email || !password) return;
+    if(!email || !password){
+      setIsLoading(false); 
+      return;
+    }
+
     signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
       const user = userCredential.user;
       setIsLoading(false);
       navigate('/');
     }).catch((error) => {
+      setIsLoading(false);
       const errorCode = error.code;
       const errorMessage = error.message;
       setError(true);
-      console.log(errorCode, errorMessage);
     });
   }
 
@@ -91,11 +95,11 @@ const SignInForm = ({runCardAnimation}) => {
   return (
     <form className='flex flex-col gap-4 mx-20 px-10 h-full justify-evenly'>
 
-//     <form className='flex flex-col gap-2 w-[474px] mx-auto px-auto h-full justify-evenly overflow-x-hidden'>
+  {/* // <form className='flex flex-col gap-2 w-[474px] mx-auto px-auto h-full justify-evenly overflow-x-hidden'> */}
       <h1 className='font-bold' style={{ fontSize: "2rem" }}>Sign in</h1>
       <p>
         <span className="opacity-50">Don't have an account? </span>
-        <span className="opacity-80 underline underline-offset-4 cursor-pointer" onClick={runCardAnimation}>Create now</span>
+        <span className="opacity-80 underline underline-offset-4 cursor-pointer text-[#07466Dff]" onClick={runCardAnimation}>Create now</span>
       </p>
       
       <div className=''>
@@ -124,7 +128,7 @@ const SignInForm = ({runCardAnimation}) => {
           <input className='cursor-pointer' type="checkbox" />
           <span className='px-2'>Remember me</span>
         </div>
-        <span onClick={handlePasswordReset} className="opacity-80 underline underline-offset-4 cursor-pointer">Forgot Password?</span>
+        <span onClick={handlePasswordReset} className="opacity-80 underline underline-offset-4 cursor-pointer text-[#07466Dff]">Forgot Password?</span>
       </div>
 
       <button className='rounded-[1.1rem] px-3 py-3 mt-1 w-full bg-[#07466Dff] text-white font-semibold' style={{ fontSize: "1.1.25rem" }} type='button' onClick={handleSignIn}>{isLoading ? (
@@ -137,7 +141,6 @@ const SignInForm = ({runCardAnimation}) => {
       <button className="border border-[#8895A880] rounded-full px-2 py-2 mb-2" type='button'>
         <div className='flex items-center justify-center'>
           <img src="/assets/icons/google-icon.svg" alt="google-icon" height={30} width={30} className='m-1' />
-          {/* <img src='/assets/icons/Loader.svg' /> */}
           <div className='w-full self-center opacity-50 font-medium' onClick={handleGoogleSignIn}>Sign in</div>
         </div>
       </button>
