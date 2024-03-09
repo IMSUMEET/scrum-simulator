@@ -5,18 +5,13 @@ import { UserAuth } from '../../context/AuthContext';
 
 const DashBoard = () => {
 
-  const { user, logOut } = UserAuth();
 
-
-  const handleLogOut = () => {
-    
-  }
+  const handleLogOut = () => { }
 
   return (
-    <div>
-      <h1> Welcome {user.displayName}</h1>
-    </div>
+    <h1> Welcome</h1>
   )
 }
+
 
 export default DashBoard

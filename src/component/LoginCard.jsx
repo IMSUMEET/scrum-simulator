@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 function LoginCard() {
     const [index, setIndex] = useState(0);
     const features = [
-        { title: "Feature 1:", description: "Description of the feature 1", imageSrc: `src\\images\\scrum_image.png`, highlight: "Highlight 1" },
-        { title: "Feature 2:", description: "Description of the feature 2", imageSrc: `src\\images\\sprint2.png`, highlight: "Highlight 2" },
+        { title: "Feature 1:", description: "Description of the feature 1", imageSrc: `assets\\images\\scrum_image.png`, highlight: "Highlight 1" },
+        { title: "Feature 2:", description: "Description of the feature 2", imageSrc: `assets\\images\\sprint2.png`, highlight: "Highlight 2" },
         // Add more features as needed
     ];
 

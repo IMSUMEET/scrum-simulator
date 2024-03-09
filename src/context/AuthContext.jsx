@@ -1,6 +1,6 @@
 import { auth } from "../services/firebase";
 import { useContext, createContext, useEffect, useState } from "react";
-import { GoogleAuthProvider, signInWithRedirect, signOut, onAuthStateChanged } from "firebase/auth";
+import { GoogleAuthProvider, signInWithRedirect, signOut, onAuthStateChanged, FacebookAuthProvider } from "firebase/auth";
 
 
 
@@ -10,11 +10,20 @@ export const AuthContextProvider = ({children}) => {
 
     // all logic goes here
 
-    const [user, setUser] = useState({});
-
+    const [user, setUser] = useState();
+    console.log(user);
     const googleSignIn = () => {
-        const provider = new GoogleAuthProvider();
-        // signInWithPopup(auth, provider);
+        try {
+            const provider = new GoogleAuthProvider();
+            // signInWithPopup(auth, provider); // for singin with pop up window 
+            signInWithRedirect(auth, provider);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const facebookSignIn = () => {
+        const provider = new FacebookAuthProvider();
         signInWithRedirect(auth, provider);
     };
 
@@ -24,8 +33,7 @@ export const AuthContextProvider = ({children}) => {
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-            setUser(currentUser);
-            console.log('User', currentUser);
+            setUser(currentUser ? currentUser : null);
         });
 
 
@@ -36,10 +44,8 @@ export const AuthContextProvider = ({children}) => {
 
     
 
-
-
     return (
-        <AuthContext.Provider value={{ googleSignIn, logOut, user }}>
+        <AuthContext.Provider value={{ googleSignIn, logOut, user, facebookSignIn }}>
             {children}
         </AuthContext.Provider>
     )

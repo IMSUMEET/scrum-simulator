@@ -4,12 +4,13 @@ import { motion } from 'framer-motion';
 import SignInForm from './forms/SignInForm';
 import Carousel from '../component/Carousel';
 import SignUpForm from './forms/SignUpForm';
+import { UserAuth } from '../context/AuthContext';
 
 
 
 const AuthLayout = () => {
 
-  const isAuthenticated = false;
+  const { user } = UserAuth();
 
   const [clickedSignUp, setClickedSignUp] = useState(false);
 
@@ -27,9 +28,9 @@ const AuthLayout = () => {
 
   return (
     <>
-      {isAuthenticated ? (
-        <Navigate to='/dashboard' />
-      ) : (
+      { user === undefined && (<></>) }
+      { user && user.uid && (<Navigate to='/' />) }
+      { user === null && (
         <div className='w-full h-full relative'>
           <section className='flex w-full h-full justify-end'>
             <motion.div className={`flex flex-col min-w-[50%] z-10 h-screen overflow-hidden absolute top-0 left-0`} animate={{ x: clickedSignUp ? "-100%" : '0' }} transition={{ type: "tween", duration: 0.5 }}>

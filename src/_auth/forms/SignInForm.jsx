@@ -1,32 +1,28 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+
 import { useState } from 'react';
 import { sendPasswordResetEmail, signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../services/firebase';
 
 import { UserAuth } from '../../context/AuthContext';
+import Loader from '../../component/Loader';
+
 
 
 const SignInForm = ({runCardAnimation}) => {
 
-  const {googleSignIn , user} = UserAuth();
+  const {googleSignIn , facebookSignIn} = UserAuth();
   
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if(user != null){
-      navigate('/');
-    }
-  }, [user]);
-
 
   // to handle the visibility of password field
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(false);
-
   const [email, setemail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   
   const handlePasswordVisibility = () => {
     setShowPassword(showPassword => !showPassword);
@@ -43,10 +39,11 @@ const SignInForm = ({runCardAnimation}) => {
   }
 
   const handleSignIn = () => {
+    setIsLoading(true);
     if(!email || !password) return;
     signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
       const user = userCredential.user;
-      console.log(user);
+      setIsLoading(false);
       navigate('/');
     }).catch((error) => {
       const errorCode = error.code;
@@ -79,6 +76,15 @@ const SignInForm = ({runCardAnimation}) => {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  const handleFacebookSignIn = async () => {
+    try {
+      await facebookSignIn();
+    } catch (error) {
+      console.log(error);
+    }
+
   }
 
 
@@ -119,23 +125,25 @@ const SignInForm = ({runCardAnimation}) => {
         <span onClick={handlePasswordReset} className="opacity-80 underline underline-offset-4 cursor-pointer">Forgot Password?</span>
       </div>
 
-      <button className='rounded-[1.1rem] px-3 py-3 mt-1 w-full bg-[#07466Dff] text-white font-semibold' style={{ fontSize: "1.1.25rem" }} type='button' onClick={handleSignIn}>Sign in</button>
-
+      <button className='rounded-[1.1rem] px-3 py-3 mt-1 w-full bg-[#07466Dff] text-white font-semibold' style={{ fontSize: "1.1.25rem" }} type='button' onClick={handleSignIn}>{isLoading ? (
+              <Loader/>
+            ): "Sign in"}</button>
       <div className="divider">
         <span className="divider-text">OR</span>
       </div>
 
       <button className="border border-[#8895A880] rounded-full px-2 py-2 mb-2" type='button'>
-        <div className='flex'>
+        <div className='flex items-center justify-center'>
           <img src="/assets/icons/google-icon.svg" alt="google-icon" height={30} width={30} className='m-1' />
-          <span className='mx-4 w-full self-center opacity-50 font-medium' onClick={handleGoogleSignIn}>Continue with Google</span>
+          {/* <img src='/assets/icons/Loader.svg' /> */}
+          <div className='w-full self-center opacity-50 font-medium' onClick={handleGoogleSignIn}>Sign in</div>
         </div>
       </button>
 
       <button className="border border-[#8895A880] rounded-full px-2 py-2" type='button'>
         <div className='flex'>
           <img src="/assets/icons/facebook-icon.svg" alt="google-icon" height={30} width={30} className='m-1'/>
-          <span className='mx-4 w-full self-center opacity-50 font-medium'>Continue with Google</span>
+          <span className='mx-4 w-full self-center opacity-50 font-medium' onClick={handleFacebookSignIn}>Continue with Facebook</span>
         </div>
       </button>
     </form>
