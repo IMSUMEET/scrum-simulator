@@ -2,7 +2,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 :root {
     --cool-gray: #8895A8ff;
     --antiflash-white: #F6F9FBff;
@@ -11,132 +10,108 @@
     --seasalt: #F7FAFCff;
 }
 
-
 @layer base {
     * {
         @apply box-border list-none p-0 m-0 scroll-smooth;
     }
-
     body {
         @apply font-inter;
     }
 }
 
-@layer components {
-
-}
+@layer components {}
 
 @layer utilities {
     /* TYPOGRAPHY */
-  .h1-bold {
-    @apply text-[36px] font-bold leading-[140%] tracking-tighter;
-  }
-
-  .h1-semibold {
-    @apply text-[36px] font-semibold leading-[140%] tracking-tighter;
-  }
-
-  .h2-bold {
-    @apply text-[30px] font-bold leading-[140%] tracking-tighter;
-  }
-
-  .h3-bold {
-    @apply text-[24px] font-bold leading-[140%] tracking-tighter;
-  }
-
-  .base-semibold {
-    @apply text-[16px] font-semibold leading-[140%] tracking-tighter;
-  }
-
-  .base-medium {
-    @apply text-[16px] font-medium leading-[140%];
-  }
-
-  .base-regular {
-    @apply text-[16px] font-normal leading-[140%];
-  }
-
-  .body-bold {
-    @apply text-[18px] font-bold leading-[140%];
-  }
-
-  .body-medium {
-    @apply text-[18px] font-medium leading-[140%];
-  }
-
-  .small-semibold {
-    @apply text-[14px] font-semibold leading-[140%] tracking-tighter;
-  }
-
-  .small-medium {
-    @apply text-[14px] font-medium leading-[140%];
-  }
-
-  .small-regular {
-    @apply text-[14px] font-normal leading-[140%];
-  }
-
-  .subtle-semibold {
-    @apply text-[12px] font-semibold leading-[140%];
-  }
-
-  .tiny-medium {
-    @apply text-[10px] font-medium leading-[140%];
-  }
-
-  .letter-spacing-normal {
-    @apply tracking-normal;
-  }
-
-  .divider {
-    width: 100%;
-    margin: 15px auto;
-    display: flex;
-    align-items: center;
-  }
-  
-  .divider::before,
-  .divider::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background-color: #8895A8ff;
-  }
-  
-  .divider-text {
-    padding: 0 20px;
-    color: #8895A8ff;
-    font-weight: 500;
-  }
-
-  .my-custom-width-transition {
-    width: 100% ease;
-    transition-delay: 2000ms; /* Adjust the delay value as needed */
-  }
-
-
-  .custom-scrollbar {
-    height: 200px;
-    overflow-y: scroll; /* Apply overflow here */
-    overflow-x: hidden;
-  }
-
-  .custom-scrollbar::-webkit-scrollbar {
-    width: 0px;
-  }
-
-  /* Track */
-  .custom-scrollbar::-webkit-scrollbar-track {
-      background: 	hsl(208, 25%, 50%);
-      border-radius: 100vw;
-      margin-block: 2em;
-      display: none;
-  }
-
-/* Handle */
-.custom-scrollbar::-webkit-scrollbar-thumb {
-    background: 	hsl(208, 25%, 78%); /* You can change the color of the scrollbar handle */
-    border-radius: 6px;
-    display: none;
-}
+    .h1-bold {
+        @apply text-[36px] font-bold leading-[140%] tracking-tighter;
+    }
+    .h1-semibold {
+        @apply text-[36px] font-semibold leading-[140%] tracking-tighter;
+    }
+    .h2-bold {
+        @apply text-[30px] font-bold leading-[140%] tracking-tighter;
+    }
+    .h3-bold {
+        @apply text-[24px] font-bold leading-[140%] tracking-tighter;
+    }
+    .base-semibold {
+        @apply text-[16px] font-semibold leading-[140%] tracking-tighter;
+    }
+    .base-medium {
+        @apply text-[16px] font-medium leading-[140%];
+    }
+    .base-regular {
+        @apply text-[16px] font-normal leading-[140%];
+    }
+    .body-bold {
+        @apply text-[18px] font-bold leading-[140%];
+    }
+    .body-medium {
+        @apply text-[18px] font-medium leading-[140%];
+    }
+    .small-semibold {
+        @apply text-[14px] font-semibold leading-[140%] tracking-tighter;
+    }
+    .small-medium {
+        @apply text-[14px] font-medium leading-[140%];
+    }
+    .small-regular {
+        @apply text-[14px] font-normal leading-[140%];
+    }
+    .subtle-semibold {
+        @apply text-[12px] font-semibold leading-[140%];
+    }
+    .tiny-medium {
+        @apply text-[10px] font-medium leading-[140%];
+    }
+    .letter-spacing-normal {
+        @apply tracking-normal;
+    }
+    .divider {
+        width: 100%;
+        margin: 15px auto;
+        display: flex;
+        align-items: center;
+    }
+    .divider::before,
+    .divider::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background-color: #8895A8ff;
+    }
+    .divider-text {
+        padding: 0 20px;
+        color: #8895A8ff;
+        font-weight: 500;
+    }
+    .my-custom-width-transition {
+        width: 100% ease;
+        transition-delay: 2000ms;
+        /* Adjust the delay value as needed */
+    }
+    .custom-scrollbar {
+        height: 200px;
+        overflow-y: scroll;
+        /* Apply overflow here */
+        overflow-x: hidden;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 0px;
+    }
+    /* Track */
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: hsl(208, 25%, 50%);
+        border-radius: 100vw;
+        margin-block: 2em;
+        display: none;
+    }
+    /* Handle */
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: hsl(208, 25%, 78%);
+        /* You can change the color of the scrollbar handle */
+        border-radius: 6px;
+        display: none;
+    }
 }
